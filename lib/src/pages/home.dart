@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clone_instagram/src/components/avatar_widget.dart';
 import 'package:flutter_clone_instagram/src/components/image_data.dart';
+import 'package:flutter_clone_instagram/src/components/post_widget.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -66,7 +67,12 @@ class Home extends StatelessWidget {
   }
 
   Widget _postList() {
-    return Container();
+    return Column(
+      children: List.generate(
+        50,
+        (index) => const PostWidget(),
+      ).toList(),
+    );
   }
 
   @override
