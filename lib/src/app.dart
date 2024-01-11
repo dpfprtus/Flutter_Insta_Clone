@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_clone_instagram/src/components/image_data.dart';
 import 'package:flutter_clone_instagram/src/controller/bottom_nav_controller.dart';
 import 'package:flutter_clone_instagram/src/pages/home.dart';
+import 'package:flutter_clone_instagram/src/pages/search.dart';
 import 'package:get/get.dart';
 
 class App extends GetView<BottomNavController> {
@@ -16,21 +17,17 @@ class App extends GetView<BottomNavController> {
         () => Scaffold(
           body: IndexedStack(index: controller.pageIndex.value, children: [
             const Home(),
-            Container(
-              child: const Center(child: Text('HOME')),
+            Navigator(
+              key: controller.searchPageNavigationKey,
+              onGenerateRoute: (routeSetting) {
+                return MaterialPageRoute(
+                  builder: (context) => const Search(),
+                );
+              },
             ),
-            Container(
-              child: const Center(child: Text('SEARCH')),
-            ),
-            Container(
-              child: const Center(child: Text('UPLOAD')),
-            ),
-            Container(
-              child: const Center(child: Text('ACTIVITY')),
-            ),
-            Container(
-              child: const Center(child: Text('MYPAGE')),
-            ),
+            const Center(child: Text('UPLOAD')),
+            const Center(child: Text('ACTIVITY')),
+            const Center(child: Text('MYPAGE')),
           ]),
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
